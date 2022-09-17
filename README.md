@@ -1,22 +1,8 @@
-# React Typescript Sass Vite Template
+# Quicknode icy.tools trending collections application
 
-This is a base Frontend Project Template using React, Typescript, Sass, and Vite for bundling.
+NOTE: This is a mono repo... not entirely a fan, but going this route for simplicity of project.
 
-# Requirements
-Node Version 16.17
-
-# Setup:
- Rename `.env.dist` → `.env`
- Paste in your API Key
-
-# To Launch a local webpage:
-
-From the root of the project, run the following:
-
- `yarn install`
- `yarn dev` 
-
-# Build for production:
-Run the following:
-
- `yarn build`
+# To Launch:
+ Follow the README's in the following directorys:
+ /webapp
+ /apollo_server
