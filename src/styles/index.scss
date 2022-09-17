@@ -1,0 +1,10 @@
+// Import variables first (must be first in order to use Sass variables in other files)
+@import "variables";
+@import "colors";
+
+// Import generic styling second
+@import "layouts";
+@import "themes";
+
+// Import specific classes last
+@import "./classes/index";

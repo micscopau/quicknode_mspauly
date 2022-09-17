@@ -1,0 +1,27 @@
+html {
+  font-size: 62.5%; // rem to px
+  height: 100%;
+  width: 100%;
+
+  --small-screen: #{ $smallScreen };
+  --medium-screen: #{ $mediumScreen };
+}
+
+body {
+  font-size: 4vh;
+  font-family: Roboto, sans-serif;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--main-body-color);
+  color: var(--main-text-color);
+  margin: 0;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
