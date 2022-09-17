@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="app">
-        Hello World
+        icy.tools - Trending Collections App
     </div>
   )
 }
