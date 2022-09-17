@@ -1,27 +1,32 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-export default defineConfig(({ command, mode }) => ({
+export default ({ command, mode })=> {
+  process.env = {...process.env, ...loadEnv(mode, process.cwd())};
 
-  build: {
-    brotliSize: false,
-    manifest: false,
-    minify: mode === 'development' ? false : 'terser',
-    outDir: 'dist',
-    sourcemap: command === 'serve' ? 'inline' : false,
-    rollupOptions: {
-      output: { 
-        entryFileNames: "assets/quicknode.js",
-        assetFileNames: `assets/[name].[ext]`
-      },
-    }
-  },
+  return defineConfig({
+    define: {
+      'process.env': {}
+    },
+    build: {
+      manifest: false,
+      minify: mode === 'development' ? false : 'terser',
+      outDir: 'dist',
+      sourcemap: command === 'serve' ? 'inline' : false,
+      rollupOptions: {
+        output: { 
+          entryFileNames: "assets/quicknode.js",
+          assetFileNames: `assets/[name].[ext]`
+        },
+      }
+    },
 
-  plugins: [react(), tsconfigPaths()],
+    plugins: [react(), tsconfigPaths()],
 
-  server: {
-    // origin: 'http://localhost:5280',
-    port: 5280,
-  },
-}));
+    server: {
+      // origin: 'http://localhost:5280',
+      port: 5280,
+    },
+  });
+}

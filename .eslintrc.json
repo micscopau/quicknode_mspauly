@@ -10,6 +10,7 @@
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
+    "ignorePatterns": ["*.config*"],
     "globals": {
         "NodeJS": true
     },
@@ -31,7 +32,7 @@
         }
     },
     "rules": {
-        "no-unused-vars": "warn",
+        "no-unused-vars": "off", //disable base, since we're using typescript version
         "@typescript-eslint/no-unused-vars": ["warn"],
         "@typescript-eslint/explicit-function-return-type": ["warn"],
         "react/react-in-jsx-scope": "off"
