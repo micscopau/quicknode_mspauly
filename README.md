@@ -5,6 +5,10 @@ This is a base Frontend Project Template using React, Typescript, Sass, and Vite
 # Requirements
 Node Version 16.17
 
+# Setup:
+ Rename `.env.dist` → `.env`
+ Paste in your API Key
+
 # To Launch a local webpage:
 
 From the root of the project, run the following:
