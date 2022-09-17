@@ -1,4 +1,5 @@
 import { UserContextProvider } from '../contexts/UserContext'
+import TrendingContent from './trending/TrendingContent'
 import WalletConnection from './wallet/WalletConnection'
 
 function App(): JSX.Element {
@@ -11,6 +12,8 @@ function App(): JSX.Element {
 
         <UserContextProvider>
           <WalletConnection />
+
+          <TrendingContent />
         </UserContextProvider>
     </div>
   )
