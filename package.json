@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  },
   "scripts": {
     "dev": "vite serve --mode development",
     "build": "tsc && vite build --mode production",
