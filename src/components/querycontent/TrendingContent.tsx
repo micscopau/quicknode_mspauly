@@ -1,8 +1,12 @@
+
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { isNullOrUndefined } from "../../utils/functions";
+import { flattenTrendingQueryData, isNullOrUndefined } from "../../utils/functions";
 import { fetchTrending } from "../../utils/requests";
+import ContentTable from "./table/ContentTable";
+import { trendingColumns } from "./table/TrendingColumns";
 
+// TODO QN7: Genericize this - abstract out the "Trending Content" specifics (fetch, flatten, classnames)
 function TrendingContent(): JSX.Element {
   const [ component, setComponent ] = useState<JSX.Element | undefined>(undefined);
   const [ data, setData ] = useState<any>(undefined);
@@ -13,31 +17,30 @@ function TrendingContent(): JSX.Element {
     if(!isNullOrUndefined(userAddress)){
       setComponent(<div>Fetching Data</div> );
 
-      // fetch trending query results
-      // TODO: Update return type.
+      // TODO QN2: Update return type.
       const fetchData = async (): Promise<any> => {
         setData(await fetchTrending());
-        
-        //TODO: replace/remove this 
-        setComponent(<div>Successfully fetched data</div>);
       }
       
       fetchData().catch( console.error );
     } else {
-      setComponent(<div> Please Connect your wallet to view trending collections</div>)
+      setComponent(<div> Please Connect your wallet to view data</div>)
     }
 
   }, [userAddress]);
 
 
   useEffect( () => {
-    // TODO: properly pass/handle the data (send to a ReactTable component?)
-    console.log("data updated:", data)
-    setComponent(<div>Data has updated... </div>)
+    if(!isNullOrUndefined(data)) {
+      setComponent(<ContentTable data={flattenTrendingQueryData(data)} columns={trendingColumns} />)
+    } else {
+      // TODO QN6: Better handle no data returned
+      // setComponent(<div>No Data Retrieved</div>)
+    }
   }, [data])
 
   return (
-    <div className="trending-content-wrapper box">
+    <div className="query-content-wrapper box">
       {component}
     </div>
   )

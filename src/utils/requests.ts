@@ -1,7 +1,8 @@
 
+// TODO QN2: Add type defining results from this query.
 export function fetchTrending(): Promise<any> {
 
-  //TODO: Add .catch
+  //TODO QN1: Add .catch
   
   return fetch('https://graphql.icy.tools/graphql', {
     method: 'POST',

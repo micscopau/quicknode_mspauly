@@ -1,6 +1,6 @@
 import React, { Component, createContext } from "react";
 import Web3 from "web3";
-import { WalletStatuses } from "../common/types";
+import { eWalletStatuses } from "../common/types";
 
 const noOp = (): void => {/*noOp*/};
 
@@ -10,7 +10,7 @@ const userStateInitial: iUserState = {
   userAddress: undefined,
   userBalance: 0,
 
-  walletStatus: WalletStatuses.DISCONNECTED,
+  walletStatus: eWalletStatuses.DISCONNECTED,
 
   connectWallet: noOp,
   disconnectWallet: noOp,
@@ -20,7 +20,7 @@ interface iUserState {
   userAddress: string | undefined, // The user's address
   userBalance: number;
 
-  walletStatus: WalletStatuses | undefined,
+  walletStatus: eWalletStatuses | undefined,
 
   connectWallet: () => void,
   disconnectWallet: () => void,
@@ -64,7 +64,7 @@ export class UserContextProvider extends Component<iUserProps, iUserState> {
       this._checkNetwork();
     } else {
       this.setState({
-        walletStatus: WalletStatuses.MISSING
+        walletStatus: eWalletStatuses.MISSING
       })
     }
   }
@@ -85,18 +85,18 @@ export class UserContextProvider extends Component<iUserProps, iUserState> {
       if ((await this.web3.eth.net.getId()).toString() === WEB_3_NETWORK_ID) {
         return true;
       }
-      if(walletStatus === WalletStatuses.MISSING) {
+      if(walletStatus === eWalletStatuses.MISSING) {
         return false;
       }
       
     } else {
       this.setState({
-        walletStatus: WalletStatuses.MISSING,
+        walletStatus: eWalletStatuses.MISSING,
       })
       return false;
     }
 
-    // TODO: Prompt user to switch networks
+    // TODO QN3: Prompt user to switch networks
 
     // this.setState({ 
     //   errorMessage: WRONG_NETWORK_MESSAGE
@@ -105,7 +105,6 @@ export class UserContextProvider extends Component<iUserProps, iUserState> {
   }
 
   connectWallet = async (): Promise<void> => {
-    console.log("connect wallet clicked")
     // It returns a promise that will resolve to the user's address.
     let userAddress = undefined;
 
@@ -119,7 +118,7 @@ export class UserContextProvider extends Component<iUserProps, iUserState> {
       if( err.code === -32002 ) {
         this.setState({
           // errorMessage: "Connection request already pending. Check Metamask.",
-          walletStatus: WalletStatuses.ERROR
+          walletStatus: eWalletStatuses.ERROR
         })
       }
       return
@@ -130,12 +129,11 @@ export class UserContextProvider extends Component<iUserProps, iUserState> {
     this.setState({ 
       userBalance,
       userAddress,
-      walletStatus: WalletStatuses.CONNECTED,
+      walletStatus: eWalletStatuses.CONNECTED,
     });
   }
 
   disconnectWallet = (): void => {
-    console.log('disconnect wallet clicked')
     this._resetState();
   }
 }

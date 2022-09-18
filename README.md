@@ -6,6 +6,7 @@ This is a base Frontend Project Template using React, Typescript, Sass, and Vite
 Node Version 16.17
 
 # Setup:
+Note: This step can be skipped (as time was not spent diggin into the icy.tools API to understand how/where to pass the API Key)
  Rename `.env.dist` → `.env`
  Paste in your API Key
 
