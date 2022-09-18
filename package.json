@@ -3,12 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  },
   "scripts": {
     "dev": "vite serve --mode development",
     "build": "tsc && vite build --mode production",
     "lint": "eslint --ext ts,tsx src/components"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.5.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "web3": "^1.8.0"

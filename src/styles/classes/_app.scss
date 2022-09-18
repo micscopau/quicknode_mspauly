@@ -1,4 +1,12 @@
 .app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: var(--main-text-color);
-  background-color: var(--box-color);
+
+  .header {
+    width: 80vw;
+    background-color: var(--box-color);
+  }
 }
