@@ -10,6 +10,8 @@ export function ConnectButton(): React.ReactElement {
   const disableConnectButton = userContext.walletStatus === WalletStatuses.MISSING;
   const isConnected = !isNullOrUndefined(userContext.userAddress);
 
+  //TODO: Turn this into a popup/toast to display to the user for feedback on why
+  // the "connect" button is disabled
   function connectDisabledClick(): void {
     console.warn("Install Metamask please.");
   }
